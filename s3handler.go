@@ -21,23 +21,21 @@ func getBuckets() []*s3.Bucket {
 
 func getObjects() {
 	s3client := gets3client()
-	params := &s3.ListObjectsInput{
-		Bucket: aws.String("BucketName"), // Required
-		// Delimiter:    aws.String("Delimiter"),
-		// EncodingType: aws.String("EncodingType"),
-		// Marker:       aws.String("Marker"),
-		// MaxKeys:      aws.Int64(1),
-		// Prefix:       aws.String("Prefix"),
+	params := &s3.GetObjectInput{
+		Bucket: aws.String("BucketName"),
+		Key:    aws.String("ObjectKey"),
 	}
-	resp, err := s3client.ListObjects(params)
+	resp, err := s3client.GetObject(params)
 
 	if err != nil {
-		// Print the error, cast err to awserr.Error to get the Code and
-		// Message from an error.
 		fmt.Println(err.Error())
 		return
 	}
 
 	// Pretty-print the response data.
 	fmt.Println(resp)
+}
+
+func downloadObjects() {
+
 }
