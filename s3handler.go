@@ -19,11 +19,11 @@ func getBuckets() []*s3.Bucket {
 	return resp.Buckets
 }
 
-func getObjects() {
+func getObjects(bucket, objectKey string) {
 	s3client := gets3client()
 	params := &s3.GetObjectInput{
-		Bucket: aws.String("BucketName"),
-		Key:    aws.String("ObjectKey"),
+		Bucket: aws.String(bucket),
+		Key:    aws.String(objectKey),
 	}
 	resp, err := s3client.GetObject(params)
 
